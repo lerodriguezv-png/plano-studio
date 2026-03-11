@@ -41,7 +41,9 @@
                 </ul>
             </nav>
 
-            <a href="#contact" class="btn btn--primary header__btn">AGENDAR DIAGNÓSTICO</a>
+            <a href="#contact" class="btn btn--primary header__btn">
+                <i data-lucide="rocket"></i> AGENDAR DIAGNÓSTICO
+            </a>
 
             <button class="mobile-toggle" aria-label="Menu">
                 <i data-lucide="menu"></i>
@@ -65,16 +67,25 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero glass-hero">
+        <!-- Decorational background blobs -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+
         <div class="container hero__container">
             <div class="hero__content fade-in-up">
-                <h1 class="hero__title">Arquitectura de <br> Negocios Digitales</h1>
-                <p class="hero__subtitle">Especializados en fortalecer capacidades y transformar la presencia de
-                    <strong>Emprendimientos y MiPymes del sector turístico</strong> formal e informal.
+                <div class="acronym-title">
+                    <span class="acronym-letter">P</span><span class="acronym-rest">royectamos</span>
+                    <span class="acronym-letter">L</span><span class="acronym-rest">ocales</span>
+                    <span class="acronym-letter">A</span><span class="acronym-rest">lcanzando</span>
+                    <span class="acronym-letter">N</span><span class="acronym-rest">iveles</span>
+                    <span class="acronym-letter">Ó</span><span class="acronym-rest">ptimos</span>
+                </div>
+                <p class="hero__subtitle">Construimos ecosistemas digitales diseñados para que tu negocio <strong>facture y destaque</strong>. Ya seas una MiPyme o un emprendimiento turístico, te armamos para competir con los grandes.
                 </p>
                 <div class="hero__actions">
-                    <a href="#services" class="btn btn--primary">Ver Planes</a>
-                    <a href="#about" class="btn btn--outline">Conocer el Estudio</a>
+                    <a href="#services" class="btn btn--primary btn--glow">Elevar mi Negocio <i data-lucide="arrow-right"></i></a>
+                    <a href="#portfolio" class="btn btn--glass">Ver Portafolio</a>
                 </div>
             </div>
 
@@ -257,7 +268,7 @@
                                     <img src="assets/icon_logo.jpg" class="back-logo" alt="Planø Logo">
                                 </div>
                                 <h4>¡Vamos a crecer!</h4>
-                                <p>Tu presencia digital está por cambiar.</p>
+                                <p>Tu presencia no pasará desapercibida.</p>
                             </div>
                         </div>
                     </div>
@@ -321,13 +332,13 @@
                 </div>
 
                 <!-- Package 2 (Featured) -->
-                <div class="package-card featured fade-in-up delay-1">
-                    <div class="package-tag">Más Popular</div>
+                <div class="package-card featured glass-card fade-in-up delay-1">
+                    <div class="package-tag glow-tag">Alta Conversión</div>
                     <div class="package-header">
                         <h4>Growth & Authority</h4>
                         <span class="package-type">Social Media</span>
                     </div>
-                    <p class="package-desc">Presencia digital activa, coherente y profesional sin que muevas un dedo.
+                    <p class="package-desc">Presencia digital activa, atractiva y magnética para captar clientes en redes sociales.
                     </p>
                     <ul class="check-list">
                         <li>Estrategia & Auditoría</li>
@@ -353,6 +364,12 @@
                     </ul>
                     <a href="#contact" class="btn btn--outline btn--full">Elegir este Plan</a>
                 </div>
+            </div>
+
+            <div class="glass-banner fade-in-up" style="margin-top: 4rem; text-align: center; padding: 2.5rem; border-radius: 12px;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 1rem; color: #fff;">¿No sabes por dónde empezar?</h3>
+                <p style="color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto 1.5rem auto;">Todo empieza con una charla. Agendemos una revisión gratuita de tu negocio, cuéntanos tus retos y te daremos las rutas para vender más por internet.</p>
+                <a href="#contact" class="btn btn--primary btn--glow">Reservar Diagnóstico Gratuito</a>
             </div>
         </div>
     </section>
@@ -397,25 +414,25 @@
                 <span class="eyebrow">¿Por qué Planø?</span>
                 <h2 class="section-title">Elevamos tu estándar</h2>
                 <div class="benefits-grid">
-                    <div class="benefit-item">
+                    <div class="benefit-item glass-benefit">
                         <i data-lucide="crown"></i>
                         <h4>Estética Premium</h4>
-                        <p>Hacemos que tu negocio se perciba de alto valor.</p>
+                        <p>Tu marca se verá y costará como una líder en tu sector.</p>
                     </div>
-                    <div class="benefit-item">
+                    <div class="benefit-item glass-benefit">
                         <i data-lucide="zap"></i>
-                        <h4>Velocidad</h4>
-                        <p>Entregas en tiempos pactados. Sin excusas.</p>
+                        <h4>Velocidad Brutal</h4>
+                        <p>Diseño ágil y entregas en tiempos que rompen récords.</p>
                     </div>
-                    <div class="benefit-item">
+                    <div class="benefit-item glass-benefit">
                         <i data-lucide="target"></i>
-                        <h4>Enfoque Comercial</h4>
-                        <p>Todo píxel tiene un propósito de venta.</p>
+                        <h4>Diseño para Vender</h4>
+                        <p>No hacemos arte, hacemos estrategia de venta visual.</p>
                     </div>
-                    <div class="benefit-item">
+                    <div class="benefit-item glass-benefit">
                         <i data-lucide="user-check"></i>
-                        <h4>Trato Directo</h4>
-                        <p>Hablas con expertos, no con intermediarios.</p>
+                        <h4>Partners Reales</h4>
+                        <p>Trato directo con los cerebros del marketing.</p>
                     </div>
                 </div>
             </div>
@@ -513,18 +530,24 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact bg-dark">
-        <div class="container text-center fade-in-up">
-            <h2 class="section-title text-white">¿Listo para elevar tu estándar?</h2>
-            <p class="contact-subtitle text-white-50">Agenda una sesión de diagnóstico de 15 minutos gratis.</p>
+    <section id="contact" class="section contact">
+        <!-- Background Blobs -->
+        <div class="blob blob-contact-1"></div>
+        <div class="blob blob-contact-2"></div>
+        
+        <div class="container">
+            <div class="contact-card glass-card text-center fade-in-up">
+                <h2 class="section-title text-white">Es momento de llevar <br>tu marca al futuro</h2>
+                <p class="contact-subtitle text-white-50">Deja de competir por precio y empieza a competir por valor.<br>Agenda un diagnóstico de 15 minutos sin costo, solo con un café y buenas ideas.</p>
 
-            <div class="contact-actions">
-                <a href="https://wa.me/573506766275" target="_blank" class="btn btn--primary">
-                    <i data-lucide="message-circle"></i> Hablar por WhatsApp
-                </a>
-                <a href="mailto:hola@planostudio.com" class="btn btn--outline-white">
-                    Enviar Correo
-                </a>
+                <div class="contact-actions">
+                    <a href="https://wa.me/573506766275" target="_blank" class="btn btn--primary btn--glow">
+                        <i data-lucide="message-circle"></i> Hablar con un Estratega
+                    </a>
+                    <a href="mailto:hola@planostudio.com" class="btn btn--outline-white">
+                        <i data-lucide="mail"></i> Enviar Correo
+                    </a>
+                </div>
             </div>
         </div>
     </section>

@@ -2,15 +2,19 @@
    Reset & Variables
    ========================================= */
 :root {
-    /* Colors */
+    /* Colors - Enhanced for Glassmorphism */
     --color-bg: #FCFCFC;
     --color-text: #1a1a1a;
-    --color-text-light: #666666;
+    --color-text-light: #555555;
     --color-accent: #FF4A3F;
-    /* Vibrant Coral/Orange Accent */
-    --color-border: #E5E5E5;
-    --color-surface: #F5F5F7;
+    --color-accent-glow: rgba(255, 74, 63, 0.4);
+    --color-border: rgba(0, 0, 0, 0.08); /* Softer borders */
+    --color-surface: rgba(255, 255, 255, 0.7); /* Translucent surface */
 
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #FF4A3F 0%, #FF8C00 100%);
+    --gradient-text: linear-gradient(135deg, #1a1a1a 0%, #FF4A3F 100%);
+    
     /* Typography */
     --font-main: 'Outfit', sans-serif;
 
@@ -22,8 +26,10 @@
     --spacing-lg: 4rem;
     --spacing-xl: 8rem;
 
-    /* Transitions */
-    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    /* Transitions & Shadows */
+    --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --shadow-glass: 0 20px 40px rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 10px 30px var(--color-accent-glow);
 }
 
 * {
@@ -130,12 +136,47 @@ ul {
 }
 
 .btn--primary {
-    background-color: var(--color-accent);
+    background: var(--gradient-primary);
     color: #fff;
+    border: none;
 }
 
 .btn--primary:hover {
-    background-color: #333;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn--glow {
+    box-shadow: 0 10px 20px rgba(255, 74, 63, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn--glow::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+    transform: scale(0);
+    transition: transform 0.6s ease-out;
+}
+
+.btn--glow:hover::after {
+    transform: scale(1);
+}
+
+.btn--glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--color-text);
+}
+
+.btn--glass:hover {
+    background: rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
 }
 
@@ -232,11 +273,66 @@ ul {
 
 /* Hero */
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     position: relative;
     padding-top: 80px;
+    overflow: hidden;
+    background: #FCFCFC;
+}
+
+/* Glassmorphism Background Blobs */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.6;
+    animation: floatBlob 15s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 74, 63, 0.2);
+    animation-delay: 0s;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 140, 0, 0.2);
+    animation-delay: -5s;
+}
+
+.blob-contact-1 {
+    top: 50%;
+    left: 20%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 74, 63, 0.4);
+    filter: blur(100px);
+}
+
+.blob-contact-2 {
+    bottom: 0;
+    right: 10%;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 140, 0, 0.3);
+    filter: blur(120px);
+}
+
+@keyframes floatBlob {
+    0% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(50px, -50px) scale(1.1); }
+    66% { transform: translate(-30px, 30px) scale(0.9); }
+    100% { transform: translate(0, 0) scale(1); }
 }
 
 .hero::before {
@@ -246,10 +342,9 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: linear-gradient(var(--color-border) 1px, transparent 1px), linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
-    opacity: 0.3;
-    z-index: -1;
+    z-index: 0;
 }
 
 .hero__container {
@@ -262,6 +357,48 @@ ul {
 
 .hero__content {
     z-index: 1;
+}
+
+/* Acronym Title Styles */
+.acronym-title {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    align-items: baseline;
+    column-gap: 0.1rem;
+    row-gap: 0rem;
+    margin-bottom: 2rem;
+    cursor: default;
+}
+
+.acronym-letter {
+    font-size: clamp(4.5rem, 11vw, 7.5rem);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    line-height: 0.85;
+    justify-self: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.acronym-rest {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: var(--color-text);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effect */
+.acronym-title:hover .acronym-letter {
+    transform: scale(1.05) translateX(-2px);
+    filter: drop-shadow(0 10px 20px rgba(255, 74, 63, 0.4));
+}
+
+.acronym-title:hover .acronym-rest {
+    color: var(--color-accent);
 }
 
 .hero__image-wrapper {
@@ -286,19 +423,42 @@ ul {
 }
 
 .hero__title {
-    font-size: clamp(3rem, 8vw, 6rem);
-    line-height: 0.95;
-    font-weight: 600;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 1;
+    font-weight: 700;
     letter-spacing: -0.04em;
     margin-bottom: 1.5rem;
 }
 
+.text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 74, 63, 0.1);
+    color: var(--color-accent);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 74, 63, 0.2);
+}
+
 .hero__subtitle {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
     color: var(--color-text-light);
-    max-width: 600px;
+    max-width: 650px;
     margin-bottom: 2.5rem;
-    font-weight: 300;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .hero__actions {
@@ -426,15 +586,12 @@ ul {
 /* Back Styling */
 .card-back {
     transform: rotateY(180deg);
-    background-color: var(--color-accent);
-    /* Dark back for contrast? Or keep light? 
-    User sent an image with light bg circle. Let's make the back slightly off-white or dark 
-    to look distinct. Let's try dark "Premium" back or match the logo context */
-    background: #fff;
-    border-color: var(--color-text);
+    background: var(--gradient-primary);
+    border-color: transparent;
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: #fff;
 }
 
 .back-content {
@@ -468,10 +625,11 @@ ul {
 .card-back h4 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    color: #fff;
 }
 
 .card-back p {
-    color: var(--color-text-light);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .service-icon {
@@ -560,26 +718,34 @@ ul {
 }
 
 .package-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(25, 25, 25, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 3rem 2rem;
     position: relative;
     transition: var(--transition);
+    border-radius: 16px;
+    overflow: hidden;
 }
 
 .package-card:hover {
-    border-color: rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 74, 63, 0.5);
+    background: rgba(40, 40, 40, 0.6);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
 .package-card.featured {
-    border-color: #fff;
-    background: #fff;
-    color: #111;
+    border-color: rgba(255, 74, 63, 0.4);
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(255, 74, 63, 0.1);
 }
 
 .package-card.featured .btn--primary {
-    background-color: #000;
+    background: var(--gradient-primary);
+    color: #fff;
 }
 
 .package-tag {
@@ -601,7 +767,8 @@ ul {
 
 .package-header h4 {
     font-size: 1.8rem;
-    font-weight: 600;
+    font-weight: 700;
+    color: #fff;
 }
 
 .package-type {
@@ -616,6 +783,7 @@ ul {
     opacity: 0.8;
     font-size: 0.95rem;
     min-height: 3rem;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .check-list {
@@ -681,10 +849,27 @@ ul {
     align-items: flex-start;
 }
 
+.glass-benefit {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 2rem;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.glass-benefit:hover {
+    background: rgba(255, 255, 255, 0.6);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glass);
+}
+
 .benefit-item i {
     min-width: 32px;
     height: 32px;
-    background: var(--color-surface);
+    background: var(--gradient-primary);
+    color: #fff;
     padding: 6px;
     border-radius: 50%;
     box-sizing: content-box;
@@ -726,11 +911,33 @@ ul {
 
 .contact {
     padding: 8rem 0;
+    position: relative;
+    background: #0f0f0f;
+    overflow: hidden;
+}
+
+.glass-card {
+    background: rgba(25, 25, 25, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    border-radius: 20px;
+}
+
+.contact-card {
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .contact-subtitle {
-    margin: 1.5rem 0 3rem 0;
+    margin: 1.5rem auto 3rem auto;
     font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.6;
 }
 
 .contact-actions {
